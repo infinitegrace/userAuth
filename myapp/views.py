@@ -16,3 +16,14 @@ def index(request):
   
   features = [feature1,feature2]
   return render(request, 'index.html',{'feature':features})
+
+def contact(request):
+  return render(request, 'contact.html')
+
+
+def properties(request):
+  return render(request, 'properties.html')
+
+
+def property_details(request):
+  return render(request, 'properties-details.html')
