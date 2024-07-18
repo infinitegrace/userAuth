@@ -1,3 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Registration </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  
+  <div class="header">
+    <a style= "display:block;text-align:center;" class="header" href="/log in">
+      log in
+    </a>
+    
+  </div>
+    
+  
+
+
+
 <form method="POST" action="/register">
  {% csrf_token %}
  <p>Enter Username: </p>
@@ -11,4 +32,11 @@
  
  <p>Repeat Password: </p>
  <input type="password" name="password2"/><br>
-</form>
+ 
+ 
+ <button style="background:#3630a3;color:white;" type="submit">Submit</button
+ 
+ </form>
+  
+</body>
+</html>
