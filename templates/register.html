@@ -14,14 +14,29 @@
     </a>
     
   </div>
-    
-  
+
+
+<!-- making the redirect messges show in our form     -->
+<style>
+  h3{
+    color: red;
+  }
+</style>
+
+{% for message in messages %}
+
+  <h3>
+    {{message}}
+  </h3>
+
+{% endfor %}
 
 
 
-<form method="POST" action="/register">
+<form method="POST" action="/register/">
  {% csrf_token %}
- <p>Enter Username: </p>
+
+ <!-- <p>Enter Username: </p>
  <input type="text" name="username"/>
  
  <p>Enter email address:</p>
@@ -31,10 +46,11 @@
  <input type="password" name="password1"/>
  
  <p>Repeat Password: </p>
- <input type="password" name="password2"/><br>
+ <input type="password" name="password2"/><br> -->
  
+ {{form}}
  
- <button style="background:#3630a3;color:white;" type="submit">Submit</button
+ <button style="background:#3630a3;color:white;" type="submit" >Submit</button>
  
  </form>
   

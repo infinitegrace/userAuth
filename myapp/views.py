@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from . models import Feature
 from django.contrib.auth.models import User, auth
 from django.contrib import messages 
 from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm
+
 
 # Create your views here.
 def index(request):
@@ -29,32 +31,36 @@ def login(request):
   return render(request, 'login.html')
  
 def register(request):
-  if request.method == 'POST':
-    username = request.POST('username')
-    email = request.POST('email')
-    password1 = request.POST('password1')
-    password2 = request.POST('password2')
+# uncomment this if you want to use the reinvented wheel
+  # if request.method == 'POST':
+  #   username = request.POST['username']
+  #   email = request.POST['email']
+  #   password1 = request.POST['password1']
+  #   password2 = request.POST['password2']
     
-    if password1 == password2:
-      if User.objects.filter(email = email).exists():
-        messages.info(request, 'Email Aready Used')
-        return redirect ('register')
+  #   if password1 == password2:
+  #     if User.objects.filter(email = email).exists():
+  #       messages.info(request, 'Email Aready Used')
+  #       return redirect ('/register/')
         
-      elif User.objects.filter(username = username).exists():
-        messages.info(request, 'Username already in use')
-        return redirect ('register')
+  #     elif User.objects.filter(username = username).exists():
+  #       messages.info(request, 'Username already in use')
+  #       return redirect ('/register/')
         
-      else:
-        user = User.objects.create_user(username=username, email=email, password=password1)
-        user.save()
-        
-  else:
-    return render (request, 'register.html')
-       
-    
-      
-      
-      
-      
-  
-  return render(request, 'register.html')
+  #     else:
+  #       user = User.objects.create_user(username=username, email=email, password=password1)
+  #       user.save()
+  #       return redirect('/log in/')
+
+  #   else:
+  #     messages.info(request,'Inconsistent Password') 
+  #     return redirect ( '/register/')      
+  # else:
+  #   return render (request, 'register.html')      
+
+  # Using the usercreation module to create and validate our form
+
+# comment this session if the above session is uncommented
+  form = UserCreationForm()
+
+  return render(request, 'register.html', {'form':form})
