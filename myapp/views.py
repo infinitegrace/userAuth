@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages 
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-
+from django import forms
 
 # Create your views here.
 def index(request):
@@ -61,6 +61,14 @@ def register(request):
   # Using the usercreation module to create and validate our form
 
 # comment this session if the above session is uncommented
-  form = UserCreationForm()
+  
+  
+  class UserRegisterationForm(UserCreationForm):
+    Email = forms.EmailField()
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+        
+  form = UserRegisterationForm()
 
   return render(request, 'register.html', {'form':form})
